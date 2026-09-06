@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+._*
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Original datasets and generated data layers
+/tables/landing/
+/tables/raw/
+/tables/curated/
+/tables/analysis/
+
+# Dataset archives
+*.zip
+
+# Local Spark files
+/spark-warehouse/
+/metastore_db/
+/artifacts/
+derby.log
+*.crc
+
+# Editor settings
+.vscode/
+.idea/
