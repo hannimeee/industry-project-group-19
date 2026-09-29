@@ -1,0 +1,35 @@
+{
+  "sha256": {
+    "final/data_dictionary.csv": "a04880707dcae5b369b0c21a1bd74c6010ecf496895dea1e9b7a1b710b804ce8",
+    "final/manifest.json": "ab36e6682bbafcd7e27ee3c11b9d3121ce0bc713ab6fc5375f814f18702b3804",
+    "final/portfolio_dashboard.csv": "6d1409f78d743d5aaedd512113d39c482954c3b4fc59744418acda974ed4b3c1",
+    "final/portfolio_dashboard.parquet": "793604877eab6a4e97df05b69b93399fddf9efad06e03c6b373eb0d08b6055f6",
+    "input_snapshot/customer_fees.parquet": "e37629533378739c314ef848f25cbfd57623be3b6e1f9b84b52afc4f9b15b59c",
+    "input_snapshot/merchants.parquet": "003ed3945410068e0cf165e11420765d847be0b6a1d370bce4452dc7a26dc819",
+    "input_snapshot/snapshot.json": "01263ef39dead0064a07c811b8f860451fc49d84b1e4d4c0e20ac43b6cb556e6",
+    "input_snapshot/weekly_fees.parquet": "f4d5b619394d4b04469ff9c5eac39bf06949cd1ffaa637fa50d5243a5880711e",
+    "optimize.py": "1259680c8fb59f6968e05409d378bb54aa05ac16910dd4e6bb4ab7d22d42bcc2",
+    "portfolio_optimizer/__init__.py": "25ed995fca96330a4693ef32c8f78628332a26e4df7068b5da8baed57057445a",
+    "portfolio_optimizer/cli.py": "debf591fcd688aba17bb7ef13458c3cfed83b178e58ce72302f62a0a645a028b",
+    "portfolio_optimizer/core.py": "998ca82e66810bb4eafc5a77b936e4a1a8a72c4472323ac037adb7c91524b5d4",
+    "portfolio_optimizer/data.py": "9f221d541e943f8b8d7ac56659258b164dd12bdf3d755bd1def9c15cff23106f",
+    "portfolio_optimizer/export.py": "f17c47bc4a53660a8f0f78493200380a5cd4a5400ea0e8153eee42dc441f4cc0",
+    "portfolio_optimizer/resource_limits.py": "cee342b171950e0598ed45514efd8826134fb186a31dd52727538c0c4ea847ce",
+    "README.md": "7fe26bc6f9027473ab0ee26e6b9936797b09608a8b7716bd2eb5f94fc3be555c",
+    "reference/execution_stop.json": "3fe44ece881a24291901e2c98b7dd8f3910db922ed4a9bf150a62f27a5c2f71d",
+    "reference/execution_validation.json": "bf6ddf170a76b38e7be5fa92360ab11da00f61a3858ed7482f7ffbac4f8f9194",
+    "reference/metrics.parquet": "3ff929fa9957ef8c127f26257b55a6fd2ca55d42832e5b6578b8d827f9a42ba9",
+    "reference/provenance.json": "90bfb9aaa257cd15110947bbb9442cd5fe0c4d89b7bc024b4f24ca592fe511aa",
+    "reference/selections.parquet": "7f47b49fd11afc68824ef2232958834009bb1d5223f6615123cb6ee3ed68cc6d",
+    "requirements.txt": "0369cb1e4916df0b00dc00b681990ebc1ff91753a6ab443a32af1be657ba3129",
+    "tests/test_core.py": "b638358ed69fb2f77ecde9260c94b7c90dec4b19d4bf9d1996b3abeb74d0c15d",
+    "tests/test_reuse.py": "af45dcff3ef23b1bf9ad0aef42ba0cff45e4131b059512e2be1e32d643f1e71f",
+    "VALIDATION.json": "90930c7e8070730d6c8ca2913fb1085d20d41a9bc2a93bde9831b1eb25569ab5"
+  },
+  "excludes": [
+    "BUILD_MANIFEST.json",
+    "runs/",
+    "__pycache__/",
+    ".pytest_cache/"
+  ]
+}

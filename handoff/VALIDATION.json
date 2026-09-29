@@ -1,0 +1,30 @@
+{
+  "test_command": "python -m pytest -p no:capture code/tests handoff/tests -q",
+  "result": "230 passed",
+  "duration_seconds": 57.6,
+  "new_portable_tests": 44,
+  "existing_tests": 186,
+  "outside_repository_cli_reuse_test": "passed with new identifiers, 2024 dates, portfolio size 2, variability weight 0.3 and 97.3% retention",
+  "real_pool_smoke_test": {
+    "eligible_merchants": 3897,
+    "retentions_percent": [
+      100,
+      99.7
+    ],
+    "status": "completed; 99.7% stopped at the configured budget and remains uncertified",
+    "included_in_official_five": false
+  },
+  "final_rows": 500,
+  "portfolios": 5,
+  "merchants_per_portfolio": 100,
+  "csv_parquet_equivalent": true,
+  "all_shipped_parquet_uncompressed": true,
+  "frozen_research_hashes_unchanged": true,
+  "portable_export_recomputed_against_inputs": true,
+  "merchant_risk_score_included": false,
+  "uncertified_original_retention_percent": [
+    99,
+    98,
+    95
+  ]
+}

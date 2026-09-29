@@ -1,0 +1,24 @@
+{
+  "as_of": "2022-09-30",
+  "complete_coverage": true,
+  "currency": "AUD",
+  "eligibility_definition": "Valid unique metadata and take rate; positive sales in both latest and preceding three complete months",
+  "expected_return_definition": "Mean monthly gross fees over the 19 complete months; sales * take_rate / 100",
+  "expected_return_end": "2022-09-30",
+  "expected_return_start": "2021-03-01",
+  "files": {
+    "customer_fees": "customer_fees.parquet",
+    "merchants": "merchants.parquet",
+    "weekly_fees": "weekly_fees.parquet"
+  },
+  "schema_version": 1,
+  "sha256": {
+    "customer_fees": "e37629533378739c314ef848f25cbfd57623be3b6e1f9b84b52afc4f9b15b59c",
+    "merchants": "003ed3945410068e0cf165e11420765d847be0b6a1d370bce4452dc7a26dc819",
+    "weekly_fees": "f4d5b619394d4b04469ff9c5eac39bf06949cd1ffaa637fa50d5243a5880711e"
+  },
+  "source_selection_freeze_sha256": "fcb4665d94417bd20528e233a09dd2a0d5a2f9e337c737eb199cb1a2c5bab132",
+  "weeks": 26,
+  "window_end": "2022-09-25",
+  "window_start": "2022-03-28"
+}

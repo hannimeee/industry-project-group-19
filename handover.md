@@ -1,5 +1,8 @@
 # BNPL project handover
 
+> Historical ETL handover, retained for provenance. For the final merged dashboard data and reusable
+> portfolio optimizer, use **[handoff/README.md](handoff/README.md)**. The notes below describe the earlier processing stage.
+
 Updated 9 September 2026. Based on this working conversation, current notebook source, saved notebook outputs and Parquet metadata inspected on this date. Counts describe the supplied release, not permanent constraints. Paths below are relative to this repository.
 
 ## 1. Purpose, scope and working preferences

@@ -1,0 +1,2 @@
+-r requirements-external.txt
+statsmodels==0.15.0

@@ -1,0 +1,26 @@
+category,cpi_series_id,cpi_proxy,cabee_codes,cabee_proxy,trends_query,trends_proxy,assumption
+"digital goods: books, movies, music",,0,,0,,0,Unmatched mixed digital publishing distribution and streaming.
+artist supply and craft shops,,0,4272,1,art supplies,0,Assume artist materials dominate finished craft goods for CABEE.
+"computer programming, data processing, and integrated systems design services",,0,7000,0,IT services,0,Computer systems services; no consumer-price proxy.
+shoe shops,A2326386V,0,4252,0,shoes,0,Footwear retail.
+"furniture, home furnishings and equipment shops, and manufacturers, except appliances",A3604403R,1,4211,1,furniture,0,Assume furniture retail dominates manufacturing and other furnishings.
+"gift, card, novelty, and souvenir shops",,0,4279,0,gift shop,0,Broad other-store retail includes gift and card goods.
+"computers, computer peripheral equipment, and software",A2329311F,1,4222,1,computer shop,0,Assume computer hardware retail dominates software services; CPI also contains audio-visual goods.
+"florists supplies, nursery stock, and flowers",,0,,0,florist,1,Search proxy assumes flower retail dominates nursery and wholesale activity.
+tent and awning shops,,0,,0,,0,Unmatched mixed camping and building-related goods.
+"cable, satellite, and other pay television and radio services",A3604443J,1,5622,0,pay TV,0,CPI media-services proxy is broader than subscription broadcasting.
+"watch, clock, and jewelry repair shops",,0,9499,0,watch repair,1,Repair industry includes other goods; watch searches proxy mixed repairs.
+bicycle shops - sales and service,A2330346C,1,4241,1,bicycles,0,Assume bicycle sales dominate repairs; CPI also includes sports and camping goods.
+"music shops - musical instruments, pianos, and sheet music",,0,4279,1,musical instruments,0,Assume instrument retail dominates sheet-music sales.
+"books, periodicals, and newspapers",A3604408A,1,4244,0,bookshop,1,CPI includes stationery; search proxy focuses on books.
+health and beauty spas,A2329266F,1,9511,1,day spa,0,Assume beauty and grooming dominate health treatments.
+"stationery, office supplies and printing and writing paper",A3604393W,1,4272,1,stationery,0,Assume stationery retail dominates wholesale; CPI includes newspapers and magazines.
+"lawn and garden supply outlets, including nurseries",,0,4232,0,garden supplies,0,Garden supply retail; no single CPI class covers both plants and tools.
+motor vehicle supplies and new parts,A2328726R,0,3921,0,car parts,0,Motor vehicle parts retail.
+"opticians, optical goods, and eyeglasses",A2329086W,1,8532,0,optometrist,1,CPI covers therapeutic goods beyond eyewear; search term emphasizes clinical services.
+"hobby, toy and game shops",A2330391R,0,4243,1,toys,1,Assume physical toys and games dominate other hobby and computer-game retail.
+"equipment, tool, furniture, and appliance rent al and leasing",,0,6639,1,,0,Assume ordinary goods rental dominates heavy machinery and scaffolding.
+"antique shops - sales, repairs, and restoration services",,0,4273,1,antiques,0,Assume antique sales dominate restoration and repairs.
+telecom,A2328546F,1,5801|5802|5809,0,,0,CPI is household telecom; CABEE combines national counts for all three telecom classes.
+art dealers and galleries,,0,4279,1,art gallery,1,Assume retail art sales dominate public gallery and admission activity.
+"jewelry, watch, clock, and silverware shops",,0,4253,1,jewellery,1,Assume jewellery and watches dominate clocks and silverware.

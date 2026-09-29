@@ -1,0 +1,2 @@
+# Preserve the portable package byte-for-byte, including hashed provenance files.
+/handoff/** -text whitespace=cr-at-eol

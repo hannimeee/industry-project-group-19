@@ -1,0 +1,15 @@
+{
+  "files": {
+    "execution_stop.json": "3fe44ece881a24291901e2c98b7dd8f3910db922ed4a9bf150a62f27a5c2f71d",
+    "execution_validation.json": "bf6ddf170a76b38e7be5fa92360ab11da00f61a3858ed7482f7ffbac4f8f9194",
+    "metrics.parquet": "3ff929fa9957ef8c127f26257b55a6fd2ca55d42832e5b6578b8d827f9a42ba9",
+    "selections.parquet": "7f47b49fd11afc68824ef2232958834009bb1d5223f6615123cb6ee3ed68cc6d"
+  },
+  "final_95_percent_search_stopped_early": true,
+  "independently_recomputed_against_portable_inputs": true,
+  "normalization": "Baseline-relative index, not a bounded 0-1 loss probability",
+  "note": "Historical snapshot only. 99%, 98%, 95% remain uncertified at 0.1% tolerance. The 95% search stopped after 30+35 completed iterations; the maximum second-tier budget was not exhausted.",
+  "score": "100 * (0.5 * portfolio_CV / baseline_CV + 0.5 * portfolio_HHI / baseline_HHI)",
+  "source": "tables/analysis/joint_risk_portfolios_50_50",
+  "source_selection_freeze_sha256": "fcb4665d94417bd20528e233a09dd2a0d5a2f9e337c737eb199cb1a2c5bab132"
+}
