@@ -1,8 +1,8 @@
-# Final portfolio handoff / 最终交接入口
+# Final portfolio handoff
 
-**Dashboard 直接读取 `final/portfolio_dashboard.parquet` 或同名 CSV。**
-两者内容相同：5 个档位 × 100 家商户 = 500 行。组合指标在每家商户行中重复，不能相加。
-这个目录可以整体复制到其他电脑；不依赖原项目的 `code/` 或 `tables/`。
+**The dashboard should read `final/portfolio_dashboard.parquet` or the equivalent CSV.**
+Both contain five portfolios of 100 merchants each: 500 rows. Portfolio metrics repeat on every merchant row and must not be summed.
+This directory can be copied to another computer; it does not depend on the original project's `code/` or `tables/` directories.
 
 `VALIDATION.json` records the completed 230-test validation and final-data checks.
 `BUILD_MANIFEST.json` lists checksums of the shipped files; generated `runs/` and caches are excluded.

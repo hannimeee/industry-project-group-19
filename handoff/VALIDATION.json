@@ -26,5 +26,12 @@
     99,
     98,
     95
-  ]
+  ],
+  "english_handoff_revision": {
+    "chinese_text_scan": "passed for all tracked documentation, source, notebooks and text data",
+    "text_files_checked": 78,
+    "portable_tests": "44 passed in 8.49 seconds",
+    "optimizer_and_tests_unchanged_from_previous_commit": true,
+    "final_data_unchanged": true
+  }
 }
