@@ -1,0 +1,24 @@
+column,unit,aggregation,description
+portfolio_id,identifier,group key,Unique snapshot / size / weight / revenue-floor combination
+as_of,date,first per portfolio,Selection cutoff; not the export date
+currency,currency code,first per portfolio,Currency shared by all fee amounts in this portfolio
+retention,fraction,first per portfolio,Minimum expected fees / revenue-only baseline expected fees; .995 means 99.5%
+merchant_abn,identifier,dimension,Merchant identifier as text; numeric ABN breaks revenue ties
+merchant_name,text,dimension,Merchant name
+merchant_category,text,dimension,Category for display; not an extra optimization constraint
+merchant_expected_monthly_gross_fees,currency / month,sum within ONE portfolio,Historical mean monthly transaction value times take rate / 100
+rank_by_expected_fees,integer,sort ascending,Revenue ordering within the selected portfolio; not an individual risk rank
+portfolio_expected_monthly_gross_fees,currency / month,FIRST ONLY; never SUM,Total expected monthly gross fees; repeated on every selected merchant row
+portfolio_variability_cv,ratio,FIRST ONLY; never SUM,Shrunk weekly fee SD / historical weekly mean; not inherently bounded by 1
+portfolio_customer_hhi,0 to 1,FIRST ONLY; never SUM,HHI of expected fees allocated to customers; shared customers combined
+portfolio_risk_score,baseline = 100,FIRST ONLY; never SUM,100 * [weight * CV/base_CV + (1-weight) * HHI/base_HHI]; not a probability
+portfolio_expected_fee_retention,fraction,FIRST ONLY; never SUM,Achieved expected fee retention; may exceed the minimum retention
+portfolio_size,integer,FIRST ONLY; never SUM,Exactly this number of merchants is selected
+variability_weight,0 to 1,first per portfolio,Weight on baseline-normalized CV
+concentration_weight,0 to 1,first per portfolio,Weight on baseline-normalized HHI
+window_start,date,first per portfolio,First Monday in the risk history
+window_end,date,first per portfolio,Last Sunday in the risk history
+portfolio_score_lower_bound,score points,FIRST ONLY; never SUM,Genuine lower bound on the globally best feasible score
+portfolio_optimality_gap,fraction,FIRST ONLY; never SUM,(best score - lower bound) / best score; optimization uncertainty
+portfolio_certified,boolean,first per portfolio,Whether requested optimization tolerance was reached; not an exact-optimum or future-performance claim
+portfolio_status,text,first per portfolio,"Termination/verification status, including uncertified searches"

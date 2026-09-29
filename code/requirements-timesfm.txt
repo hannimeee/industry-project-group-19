@@ -1,0 +1,5 @@
+-r requirements-forecast.txt
+timesfm==3.0.1
+torch==2.6.0
+huggingface_hub==1.30.0
+safetensors==0.8.0

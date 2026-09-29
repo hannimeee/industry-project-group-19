@@ -1,0 +1,28 @@
+{
+  "completed_at_utc": "2026-09-29T04:48:04.847825+00:00",
+  "full_suite": {
+    "passed": 186,
+    "seconds": 33.8,
+    "exit_code": 0
+  },
+  "new_mathematical_tests": 23,
+  "independent_recomputation": true,
+  "visual_qa": true,
+  "portfolios": 5,
+  "merchant_rows": 500,
+  "certified_at_requested_tolerance": 2,
+  "uncertified": 3,
+  "optimization_running": false,
+  "older_analysis_outputs_unchanged_during_final_checks": true,
+  "last_case_stopped_before_maximum_budget": true,
+  "files": {
+    "code\\joint_risk_portfolios.py": "bfd5e41f6bbc8710870d8c47bb7e4bc4a80c6cbdd94c37e8243b49aaf325c142",
+    "code\\tests\\test_joint_risk_portfolios.py": "344a1fa51c58ccc97a86541edc4e84f993590cf9f0d88fd73a1bbf653deb3ba3",
+    "tables\\analysis\\joint_risk_portfolios_50_50\\finalize_checkpoint.py": "ac25b4303330f0de4591edfa3944ffbc981d2c375b29506840c4d1ab2891d653",
+    "tables\\analysis\\joint_risk_portfolios_50_50\\verify_outputs.py": "60b9c0ea93b60b95a416b89b479ca92e2cb9aefc033da72f7f1d65cdd828b668",
+    "tables\\analysis\\joint_risk_portfolios_50_50\\findings.md": "57f26e534ea4c2f934798049df487322e95590f5d3ab42b0cc630a4a5ff97998",
+    "tables\\analysis\\joint_risk_portfolios_50_50\\dashboard_portfolios.json": "341f052c189835752c71842d32925cf94a2cca5a6f3a8461a6965a798201ef77",
+    "tables\\analysis\\joint_risk_portfolios_50_50\\selections.csv": "f7347b67f32ec07c28a69f4fb7feb2fad2cc4cf6df5e0b023bb51e550fa87643",
+    "tables\\analysis\\joint_risk_portfolios_50_50\\metrics.csv": "8bed4e41d7a6cd943be9387ce6b4c43a92c38702f0992e0806f430ef06675665"
+  }
+}

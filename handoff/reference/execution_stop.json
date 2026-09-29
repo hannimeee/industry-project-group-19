@@ -1,0 +1,17 @@
+{
+  "stopped_at_utc": "2026-09-29T04:44:01.236362+00:00",
+  "reason": "Search stopped after prolonged incumbent and bound stagnation; validation and export proceed with explicit uncertified status. Maximum second-tier budget was not exhausted.",
+  "pid": 44056,
+  "progress": {
+    "signature": "42877f675a1dd55322628b54b89edc3fa33450ba06d4c9f9fde272c50ad16413",
+    "tier": 2,
+    "iteration": 34,
+    "exact_normalization": false,
+    "status": 1,
+    "nodes": 1,
+    "score": 95.87271909667984,
+    "lower_bound": 94.99881940453363,
+    "gap": 0.009115207124405864,
+    "seconds": 60.943487800017465
+  }
+}

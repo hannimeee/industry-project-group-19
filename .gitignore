@@ -4,6 +4,7 @@
 
 # Jupyter temporary files
 .ipynb_checkpoints/
+.pytest_cache/
 
 # Python caches and environments
 __pycache__/
@@ -19,6 +20,9 @@ venv/
 /tables/raw/
 /tables/curated/
 /tables/analysis/
+
+# New reusable optimizer runs; final handoff files and its input snapshot are retained.
+/handoff/runs/
 
 # Dataset archives
 *.zip

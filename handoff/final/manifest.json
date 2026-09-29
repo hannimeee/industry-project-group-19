@@ -1,0 +1,17 @@
+{
+  "files": {
+    "data_dictionary.csv": "a04880707dcae5b369b0c21a1bd74c6010ecf496895dea1e9b7a1b710b804ce8",
+    "portfolio_dashboard.csv": "6d1409f78d743d5aaedd512113d39c482954c3b4fc59744418acda974ed4b3c1",
+    "portfolio_dashboard.parquet": "793604877eab6a4e97df05b69b93399fddf9efad06e03c6b373eb0d08b6055f6"
+  },
+  "grain": "one selected merchant per portfolio",
+  "merchant_risk_score_included": false,
+  "portfolio_aggregation": "Filter portfolio_id, then FIRST or drop_duplicates; never sum repeated portfolio_* columns",
+  "portfolios": 5,
+  "primary_key": [
+    "portfolio_id",
+    "merchant_abn"
+  ],
+  "rows": 500,
+  "schema_version": 1
+}
