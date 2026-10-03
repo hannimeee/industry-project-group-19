@@ -1,0 +1,16 @@
+segment_a,segment_b,candidate_pairs,valid_pairs,excluded_pairs
+"Technology, Digital & Communications","Technology, Digital & Communications",375411,375410,1
+"Technology, Digital & Communications","Home, Garden & General Supplies",702270,702270,0
+"Technology, Digital & Communications","Fashion, Jewellery & Personal Care",659787,658020,1767
+"Technology, Digital & Communications","Arts, Crafts, Gifts & Entertainment",944163,939767,4396
+"Technology, Digital & Communications","Automotive, Outdoor & Recreational Equipment",432633,432628,5
+"Home, Garden & General Supplies","Home, Garden & General Supplies",327645,327645,0
+"Home, Garden & General Supplies","Fashion, Jewellery & Personal Care",616410,614754,1656
+"Home, Garden & General Supplies","Arts, Crafts, Gifts & Entertainment",882090,877987,4103
+"Home, Garden & General Supplies","Automotive, Outdoor & Recreational Equipment",404190,404189,1
+"Fashion, Jewellery & Personal Care","Fashion, Jewellery & Personal Care",289180,287602,1578
+"Fashion, Jewellery & Personal Care","Arts, Crafts, Gifts & Entertainment",828729,822513,6216
+"Fashion, Jewellery & Personal Care","Automotive, Outdoor & Recreational Equipment",379739,378714,1025
+"Arts, Crafts, Gifts & Entertainment","Arts, Crafts, Gifts & Entertainment",592416,586746,5670
+"Arts, Crafts, Gifts & Entertainment","Automotive, Outdoor & Recreational Equipment",543411,540878,2533
+"Automotive, Outdoor & Recreational Equipment","Automotive, Outdoor & Recreational Equipment",124251,124251,0
