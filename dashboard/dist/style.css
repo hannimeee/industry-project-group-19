@@ -90,3 +90,11 @@ body,button,select,.pill,#chart text{font-family:'Space Grotesk',Arial,sans-seri
 
 .risk-label{display:block;font-size:12px;font-weight:500;margin-top:5px;color:var(--muted)}
 #tour-overlay{pointer-events:none;touch-action:auto}#tour-card,.tour-blocker{pointer-events:auto}.tour-blocker{position:fixed}body.tour-active{overflow:auto}body.tour-active #merchant-preview,body.tour-active #distribution-popup{z-index:1100}
+
+/* Lead with the alpha strategy; retain its numeric score alongside. */
+.metrics .risk-value{display:flex;align-items:baseline;gap:9px;flex-wrap:nowrap;margin:0 0 6px;min-width:0}
+.metrics .risk-value .risk-label{display:inline-block;font-size:clamp(14px,1.45vw,23px);font-weight:500;line-height:1.25;margin:0;white-space:nowrap;color:var(--ink)}
+.metrics .risk-value .risk-number{display:inline;font-size:12px;line-height:1.25;margin:0;white-space:nowrap;color:var(--muted);flex-shrink:0}
+@media(min-width:901px) and (max-width:1150px){.metrics .risk-value{gap:5px}.metrics .risk-value .risk-label{font-size:13px}.metrics .risk-value .risk-number{font-size:11px}}
+
+.metrics .risk-value .risk-label[data-long="true"]{font-size:clamp(12px,1.05vw,17px)}

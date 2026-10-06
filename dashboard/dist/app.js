@@ -25,7 +25,7 @@ function render(){
  $('retention').value=p.id;
  $('table-count').textContent=p.merchants.length;
  $('revenue').textContent=compact(m.expected_monthly_fees);$('revenue').title=money(m.expected_monthly_fees);
- $('risk-score').textContent=m.risk_score.toFixed(3);$('risk-label').textContent=strategyLabel(p.retention);$('risk-label').title='Strategy label based on α, not a risk-score threshold';
+ $('risk-score').textContent=m.risk_score.toFixed(3);$('risk-label').textContent=strategyLabel(p.retention);$('risk-label').dataset.long=String(strategyLabel(p.retention).length>15);$('risk-label').title='Strategy label based on α, not a risk-score threshold';
  $('variability').textContent=pct(m.cv,3);$('variability').title=String(m.cv);
  $('concentration').textContent=m.hhi.toFixed(8);$('concentration').title=String(m.hhi);
  $('selection-title').textContent=`α = ${pct(p.retention)} · return-retention target`;
