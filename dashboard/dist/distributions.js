@@ -2,7 +2,7 @@
 (() => {
  const section=$('distributions'),host=$('distribution-charts'),popup=$('distribution-popup');
  const specs=[
-  {key:'avg_consumer_district_income',name:'Average consumer district income',unit:'AUD / week',note:'Area-income estimate, not individual income.',format:v=>money(v),linear:true},
+  {key:'avg_consumer_district_income',name:'Consumer average district income',unit:'AUD / week',note:'Area-income estimate, not individual income.',format:v=>money(v),linear:true},
   {key:'avg_consumer_fraud_prob',name:'Average consumer fraud score',unit:'Percent',note:'Stored percentage points, averaged over merchant transactions.',format:v=>v.toFixed(2)+'%',linear:true},
   {key:'total_transactions',name:'Total transactions',unit:'Transactions',note:'Count over the curated transaction history, not per month.',format:v=>Math.round(v).toLocaleString('en-AU')},
   {key:'avg_value_per_transaction',name:'Average transaction value',unit:'AUD / transaction',note:'Curated total transaction value divided by transaction count.',format:v=>money(v)},
@@ -63,6 +63,7 @@
  $('distribution-popup-close').addEventListener('click',()=>{close();returnFocus?.focus({preventScroll:true});close();});
  $('distribution-popup-list').addEventListener('click',e=>{
   const button=e.target.closest('button[data-rank]');if(!button)return;
+  window.dispatchEvent(new Event('tour-show-merchant'));
   selectPage(Math.floor((Number(button.dataset.rank)-1)/pageSize));close();
   const row=document.querySelector(`[data-merchant-abn="${button.dataset.abn}"]`);
   if(row){row.classList.add('merchant-highlight');row.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});row.focus({preventScroll:true});}
@@ -70,6 +71,7 @@
  document.addEventListener('pointerdown',e=>{if(!popup.hidden&&!popup.contains(e.target)&&!e.target.closest('.histogram-bar'))close();});
  window.addEventListener('resize',close);window.addEventListener('scroll',close,{passive:true});
  section.addEventListener('toggle',()=>section.open?render():close());
+ window.closeDistributionPopup=close;
  window.renderDistributions=render;
  // Pure binning hook is used by local integrity checks as well as the renderer.
  window.distributionModel={specs,build};

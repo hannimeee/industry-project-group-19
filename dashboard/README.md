@@ -1,3 +1,20 @@
+# Current local dashboard — consumer-fraud-adjusted results
+
+The dashboard now lives in this repository's `dashboard/` directory. Deploy the complete `dashboard/dist/` folder. No online deployment was performed for this update.
+
+Run `python dashboard/refresh_final.py` from the repository root with the dependencies in `dashboard/requirements.txt`. The default source is `handoff/fraud_adjusted/final/`; explicit adjusted-return columns and `fee_basis` are validated. Source hashes, merchant totals, retention and risk scores are checked before writing the bundle. Curated reference attributes are joined by ABN. Internal `expected_monthly_fees` keys remain for compatibility but hold adjusted monthly return.
+
+Return, weekly volatility and consumer exposures now include take rate and transaction-level consumer-fraud adjustment. The original category relationship matrices still come from `handoff/final/`, are full-dataset descriptive measures, and are labelled separately. Curated fraud averages in merchant details are descriptive full-history attributes, not necessarily the reconstructed scores used in the adjusted optimisation.
+
+Alpha strategy labels: 100% High Growth; 99.5% Growth; 99% Balanced; 98% and 95% Conservative Balanced. Labels are alpha preferences, not risk-score thresholds.
+
+The tutorial allows interaction inside the highlighted section, merchant and histogram popups, pagination and relationship switches. Histogram-to-ranking navigation moves the tour to its merchant step. Skip, Back, Next, Escape and keyboard traversal remain available.
+
+`code/11_summary.ipynb` was rerun on the matching adjusted exports and input snapshot. It contains a comparison with original selections and their evaluation on the same adjusted basis. Original gross-only handoff exports and the separate demo dashboard remain unchanged.
+
+---
+## Historical implementation notes (superseded where the basis or path differs)
+
 # Final merchant dashboard — Group 19
 
 Open **dist/index.html** locally. Keep the entire `dist/` folder, including fonts, together. The page works offline. The original demonstration dashboard at the course-folder level remains unchanged.

@@ -8,7 +8,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_SOURCE = ROOT.parent / 'MAST30034 Project 2 Repository/handoff/final'
+DEFAULT_SOURCE = ROOT.parent / 'handoff/fraud_adjusted/final'
 
 SCOPES = [('global','Global · all eligible merchants','portfolio_dashboard.csv'),
  ('tech','Technology, Digital & Communications','tech_portfolio_dashboard.csv'),
@@ -19,6 +19,8 @@ SCOPES = [('global','Global · all eligible merchants','portfolio_dashboard.csv'
 
 def load_scope(source, filename):
     rows = list(csv.DictReader((source / filename).open(newline='', encoding='utf-8-sig')))
+    if any(r.get('fee_basis') != 'consumer_fraud_adjusted' for r in rows):
+        raise ValueError('Expected consumer-fraud-adjusted exports')
     if len(rows) != 500:
         raise ValueError(f'{filename}: expected 500 rows')
     groups = defaultdict(list)
@@ -48,8 +50,8 @@ def load_scope(source, filename):
         size = int(first['portfolio_size'])
         if len(group) != size or sorted(int(r['rank_by_expected_fees']) for r in group) != list(range(1, size + 1)):
             raise ValueError(f'Invalid count/rank in {ident}')
-        merchants = [{'rank': int(r['rank_by_expected_fees']), 'abn': r['merchant_abn'], 'name': r['merchant_name'], 'category': r['merchant_category'], 'expected_monthly_fees': number(r, 'merchant_expected_monthly_gross_fees')} for r in sorted(group, key=lambda r: int(r['rank_by_expected_fees']))]
-        total = number(first, 'portfolio_expected_monthly_gross_fees')
+        merchants = [{'rank': int(r['rank_by_expected_fees']), 'abn': r['merchant_abn'], 'name': r['merchant_name'], 'category': r['merchant_category'], 'expected_monthly_fees': number(r, 'merchant_expected_monthly_adjusted_fees')} for r in sorted(group, key=lambda r: int(r['rank_by_expected_fees']))]
+        total = number(first, 'portfolio_expected_monthly_adjusted_fees')
         if not math.isclose(sum(m['expected_monthly_fees'] for m in merchants), total, rel_tol=1e-10, abs_tol=1e-6):
             raise ValueError('Merchant fee total does not reconcile')
         if any(m['expected_monthly_fees'] < 0 for m in merchants):
@@ -92,7 +94,7 @@ def build(source, output, merchants_path=None):
         if hashlib.sha256((source/name).read_bytes()).hexdigest()!=expected:
             raise ValueError(f'Source checksum mismatch: {name}')
     if merchants_path is None:
-        merchants_path=source.parent.parent/'tables/curated/merchants'
+        merchants_path=ROOT.parent/'tables/curated/merchants'
     merchants_path=Path(merchants_path)
     incomes={}
     attributes={}
@@ -129,9 +131,10 @@ def build(source, output, merchants_path=None):
         for m in p['merchants']:
             if m['category'] not in category_segments:raise ValueError('Selected category has no segment mapping')
             m['segment']=category_segments[m['category']]
+    relationship_source=ROOT.parent/'handoff/final'
     correlations={}
     for kind in ['revenue','customers']:
-        name='correlation_'+kind+'.csv';rows=list(csv.DictReader((source/name).open()))
+        name='correlation_'+kind+'.csv';rows=list(csv.DictReader((relationship_source/name).open()))
         categories=list(rows[0])[1:]
         if [r['segment'] for r in rows]!=categories or set(categories)!={s[1] for s in SCOPES[1:]}:raise ValueError('Matrix labels do not match segments')
         values=[[float(r[c]) for c in categories] for r in rows]
@@ -139,14 +142,14 @@ def build(source, output, merchants_path=None):
             for j,v in enumerate(row):
                 if not math.isfinite(v) or not (-1 if kind=='revenue' else 0)<=v<=1 or not math.isclose(v,values[j][i],abs_tol=1e-8):raise ValueError('Invalid similarity matrix')
         diagnostics_name='correlation_'+kind+'_pair_diagnostics.csv'
-        diagnostics=list(csv.DictReader((source/diagnostics_name).open()))
+        diagnostics=list(csv.DictReader((relationship_source/diagnostics_name).open()))
         for d in diagnostics:
             for k in ['candidate_pairs','valid_pairs','excluded_pairs']:d[k]=int(d[k])
             if d['valid_pairs']+d['excluded_pairs']!=d['candidate_pairs']:raise ValueError('Invalid pair diagnostics')
         correlations[kind]={'categories':categories,'values':values,'diagnostics':diagnostics}
-        for f in [name,diagnostics_name]:hashes[f]=hashlib.sha256((source/f).read_bytes()).hexdigest()
+        for f in [name,diagnostics_name]:hashes['relationships/'+f]=hashlib.sha256((relationship_source/f).read_bytes()).hexdigest()
     files=sorted(merchants_path.rglob('*.parquet')) if merchants_path.is_dir() else [merchants_path]
-    result.update(results_date="2022-10-03",demo=False,scopes=[{'id':s,'name':n} for s,n,_ in SCOPES],portfolios=portfolios,correlations=correlations,source={'files':hashes,'curated_merchants_rows':len(incomes),'income_source_hashes':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in files},'null_income_rows':sum(m['avg_consumer_district_income'] is None for p in portfolios for m in p['merchants'])})
+    result.update(fee_basis='consumer_fraud_adjusted',relationship_basis='Original full-dataset descriptive relationships; not recomputed for fraud-adjusted selection',results_date="2022-10-03",demo=False,scopes=[{'id':s,'name':n} for s,n,_ in SCOPES],portfolios=portfolios,correlations=correlations,source={'files':hashes,'curated_merchants_rows':len(incomes),'income_source_hashes':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in files},'null_income_rows':sum(m['avg_consumer_district_income'] is None for p in portfolios for m in p['merchants'])})
     output=Path(output);temporary=output.with_suffix('.tmp')
     temporary.write_text('window.PORTFOLIO_DATA = '+json.dumps(result,ensure_ascii=True,allow_nan=False,separators=(',',':'))+';\n')
     temporary.replace(output)

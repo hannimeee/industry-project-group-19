@@ -8,7 +8,7 @@
   $('merchant-preview-name').textContent=m.name;
   $('merchant-preview-abn').textContent=`Rank ${m.rank} · ABN ${m.abn}`;
   $('merchant-preview-category').textContent=m.category;
-  const stats=[['⌂','Average district income',m.avg_consumer_district_income==null?'—':money(m.avg_consumer_district_income)+' / week'],['◇','Average consumer fraud score',m.avg_consumer_fraud_prob==null?'—':m.avg_consumer_fraud_prob.toFixed(2)+'%'],['≡','Total transactions',m.total_transactions==null?'—':m.total_transactions.toLocaleString('en-AU')],['↔','Average transaction value',m.avg_value_per_transaction==null?'—':money(m.avg_value_per_transaction)],['↗','Fraud-adjusted expected revenue',m.expected_revenue==null?'—':money(m.expected_revenue)]];
+  const stats=[['⌂','Consumer average district income',m.avg_consumer_district_income==null?'—':money(m.avg_consumer_district_income)+' / week'],['◇','Average consumer fraud score',m.avg_consumer_fraud_prob==null?'—':m.avg_consumer_fraud_prob.toFixed(2)+'%'],['≡','Total transactions',m.total_transactions==null?'—':m.total_transactions.toLocaleString('en-AU')],['↔','Average transaction value',m.avg_value_per_transaction==null?'—':money(m.avg_value_per_transaction)],['↗','Expected monthly return',money(m.expected_monthly_fees)]];
   $('merchant-preview-stats').innerHTML=stats.map(([icon,label,value])=>`<dt><span aria-hidden="true">${icon}</span>${esc(label)}</dt><dd>${esc(value)}</dd>`).join('');
   panel.hidden=false;const r=row.getBoundingClientRect(),w=panel.offsetWidth,h=panel.offsetHeight;
   const left=r.left>w+24?r.left-w-12:r.right+12;

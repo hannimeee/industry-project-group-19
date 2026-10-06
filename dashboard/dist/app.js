@@ -6,6 +6,7 @@ const money=n=>new Intl.NumberFormat('en-AU',{style:'currency',currency:data.cur
 const compact=n=>new Intl.NumberFormat('en-AU',{style:'currency',currency:data.currency,notation:'compact',maximumFractionDigits:3}).format(n);
 const pct=(n,digits=1)=>new Intl.NumberFormat('en-AU',{style:'percent',maximumFractionDigits:digits}).format(n);
 const date=s=>new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+const strategyLabel=a=>({'1':'High Growth','0.995':'Growth','0.99':'Balanced','0.98':'Conservative Balanced','0.95':'Conservative Balanced'}[String(a)]||'');
 const portfolio=()=>data.portfolios.find(p=>p.id===selectedId);
 $('source').textContent='Final results: '+new Date(data.results_date+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
 $('source').title='Results label date; underlying selection snapshot: '+date(data.as_of);
@@ -24,14 +25,14 @@ function render(){
  $('retention').value=p.id;
  $('table-count').textContent=p.merchants.length;
  $('revenue').textContent=compact(m.expected_monthly_fees);$('revenue').title=money(m.expected_monthly_fees);
- $('risk-score').textContent=m.risk_score.toFixed(3);
+ $('risk-score').textContent=m.risk_score.toFixed(3);$('risk-label').textContent=strategyLabel(p.retention);$('risk-label').title='Strategy label based on α, not a risk-score threshold';
  $('variability').textContent=pct(m.cv,3);$('variability').title=String(m.cv);
  $('concentration').textContent=m.hhi.toFixed(8);$('concentration').title=String(m.hhi);
  $('selection-title').textContent=`α = ${pct(p.retention)} · return-retention target`;
- $('selection-description').textContent=`This portfolio retains ${pct(m.achieved_retention,3)} of its scope’s baseline expected fees. Its combined risk score is ${m.risk_score.toFixed(3)}, against a baseline of 100.`;
+ $('selection-description').textContent=`This portfolio retains ${pct(m.achieved_retention,3)} of its scope’s baseline expected return. Its combined risk score is ${m.risk_score.toFixed(3)}, against a baseline of 100.`;
  $('solution-status').textContent=`${v.certified?'Certified to solver tolerance':'Best found · not certified to tolerance'} · gap upper bound ${pct(v.gap,3)}`;
  $('solution-status').dataset.certified=String(v.certified);
- $('status').textContent=`Showing ${p.merchants.length} selected merchants at a ${pct(p.retention)} minimum fee-retention floor.`;
+ $('status').textContent=`Showing ${p.merchants.length} selected merchants at a ${pct(p.retention)} minimum return-retention floor.`;
  renderTable();renderChart();renderSegmentMix();window.renderDistributions?.();
 }
 function renderTable(){window.closeMerchantPreview?.();const list=portfolio().merchants,start=page*pageSize;
@@ -45,10 +46,10 @@ function renderChart() {
  const xmin=Math.min(...xs),xmax=Math.max(...xs),ymin=Math.min(...ys),ymax=Math.max(...ys);
  const dx=xmax-xmin||Math.max(Math.abs(xmax)*.1,1),dy=ymax-ymin||Math.max(Math.abs(ymax)*.1,1);
  const x=v=>135+(v-xmin)/dx*395,y=v=>230-(v-ymin)/dy*135;
- let svg=`<svg viewBox="0 0 620 345" role="img" aria-label="Monthly expected revenue versus the combined CV and customer HHI risk index, using focused axis ranges. Lines connect supplied portfolios and do not estimate an efficient frontier.">
+ let svg=`<svg viewBox="0 0 620 345" role="img" aria-label="Expected monthly return versus the combined CV and customer HHI risk index, using focused axis ranges. Lines connect supplied portfolios and do not estimate an efficient frontier.">
  <defs><marker id="axis-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#271866"/></marker></defs>
  <rect x="12" y="12" width="83" height="29" rx="2" fill="#e7e3ff"/><text class="axis-title" x="53.5" y="32" text-anchor="middle">Return</text>
- <text x="108" y="32">Monthly expected revenue</text>
+ <text x="108" y="32">Expected monthly return</text>
  <path d="M 94 269 V 57 M 94 269 H 578" fill="none" stroke="#271866" stroke-width="2.2" marker-end="url(#axis-arrow)"/>
  <path d="M 94 80 V 57" fill="none" stroke="#271866" stroke-width="2.2" marker-end="url(#axis-arrow)"/>`;
  for(let i=0;i<3;i++) {
@@ -74,8 +75,8 @@ if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContex
 function renderSegmentMix(){
  const p=portfolio(),panel=$('segment-mix');panel.hidden=p.scope!=='global';
  if(panel.hidden)return;
- const segments=data.scopes.filter(s=>s.id!=='global');
- $('segment-mix-rows').innerHTML=segments.map((s,i)=>{
+ const sectors=data.scopes.filter(s=>s.id!=='global');
+ $('segment-mix-rows').innerHTML=sectors.map((s,i)=>{
   const count=p.merchants.filter(m=>m.segment===s.id).length,share=count/p.merchants.length;
   return `<div class="segment-mix-row"><span>${esc(s.name)}</span><strong>${pct(share)}</strong><div class="segment-mix-track"><i style="width:${share*100}%;--segment-color:${['#271866','#6554ad','#9884ce','#00a5bd','#6fc9d0'][i]}"></i></div></div>`;
  }).join('');
