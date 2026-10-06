@@ -1,0 +1,52 @@
+{
+  "test_suite": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "241",
+    "time": "32.417",
+    "timestamp": "2026-10-06T11:06:42.344215+11:00",
+    "hostname": "theBEST"
+  },
+  "prepared_inputs_match_delivery": true,
+  "source_and_model_fingerprints_verified": true,
+  "final_export_hashes_verified": true,
+  "no_worse_than_feasible_original_selections": true,
+  "repository_base_commit": "b2cfa61f980d84cc17bb8467e9f6b598d719ad6a",
+  "source_sha256": {
+    "code/fraud_adjusted_portfolios.py": "2e8b9a9919c69045224235fb03a74a18cd088b3d98fee5c93cb7cfae7aa95d81",
+    "code/fraud_adjusted_validation.py": "3f0a499265a060fd3ea545e4ecd9dd49a7d9753c9d112fbe74337a1ffa16c55f",
+    "code/tests/test_fraud_adjusted_portfolios.py": "dcfcdfeca633262731b7b462d2a6a7fbfaabc2b6d67cc0cc529c8d8844b517c3",
+    "code/10_category_ranking.py": "4c8bef2032f909f93a2ed79669a922e87b32e5c6a41737086ecb3ba5cda921f4"
+  },
+  "category_entry_point": "python code/10_category_ranking.py --fraud-adjusted",
+  "category_results": [
+    {
+      "scope": "tech",
+      "portfolios": 5,
+      "merchant_rows": 500
+    },
+    {
+      "scope": "home",
+      "portfolios": 5,
+      "merchant_rows": 500
+    },
+    {
+      "scope": "fashion",
+      "portfolios": 5,
+      "merchant_rows": 500
+    },
+    {
+      "scope": "arts",
+      "portfolios": 5,
+      "merchant_rows": 500
+    },
+    {
+      "scope": "auto",
+      "portfolios": 5,
+      "merchant_rows": 500
+    }
+  ],
+  "completed_checkpoints_reverified": 25
+}

@@ -1,0 +1,43 @@
+{
+  "adjusted_monthly_fees": 4446173.870819008,
+  "all_579_days_reconciled_to_original": true,
+  "clipped_orders": 1,
+  "customer_weekly_reconciled": true,
+  "eligible": 3897,
+  "files": {
+    "consumer_model.json": "efecf35fa44fa0bdff5a19cefe6d9acdb066e2d9b74dd19d3d3be7e19da7baa8",
+    "consumer_training.parquet": "5a2718c016a6f66adbeb113cb6961d657849e3102b31f9524ee2a75810140edb",
+    "input_snapshot/snapshot.json": "709f7069d0bb57195b89f6a03f7b878e96783643071a692781a750f7b8db8f81",
+    "merchant_day.parquet": "e9f4b90cb852f4ffbba4e43174d7102cc7778a019dc7f513f960382eddccc3b3"
+  },
+  "gross_monthly_fees": 4802322.768489106,
+  "imputed_orders": 13360458,
+  "known_orders": 12890819,
+  "label_scope": "Supplied consumer/date scores from 2021-02-28 to 2022-02-27; later orders are model extrapolation",
+  "low_support_orders": 12951733,
+  "missing_scores": 0,
+  "observed_orders": 80308,
+  "protocol": {
+    "code_sha256": "2e8b9a9919c69045224235fb03a74a18cd088b3d98fee5c93cb7cfae7aa95d81",
+    "formula": "sales * take_rate / 100 * (1 - consumer_score / 100)",
+    "history": [
+      "2021-03-01",
+      "2022-09-30"
+    ],
+    "risk_window": [
+      "2022-03-28",
+      "2022-09-25"
+    ],
+    "sources": {
+      "audited_daily_panel": "37f117475c2071e87fed7c5d39d09ff6208517ee90538fe64b9dc5507e04887f",
+      "etl_notebook": "30857f68f38c7584411519316abfacd2421202f6cb5a160be41afb290fc70110",
+      "original_snapshot": "01263ef39dead0064a07c811b8f860451fc49d84b1e4d4c0e20ac43b6cb556e6",
+      "project-2-bnpl-tables-part1.zip": "b9b970bbc7ec8d4c5c08a79a76ba3aea1e120735d49ef06f1723ded23549cc7c",
+      "project-2-bnpl-tables-part2.zip": "183e32e4dca8396e355c003e52667a9a9fe1327b62292967c8b47f540c29fa52",
+      "project-2-bnpl-tables-part3.zip": "56e4f4783b146aaa158f0be518103e335c5ac201b459d21dfb431f64867e524b",
+      "project-2-bnpl-tables-part4.zip": "7b8e156ec466897182476e3be20b9a02662683c917f887651afe584fce1192d7"
+    }
+  },
+  "rows": 13440766,
+  "unknown_merchant_orders": 549947
+}

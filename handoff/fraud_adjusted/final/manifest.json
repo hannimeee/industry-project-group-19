@@ -1,0 +1,27 @@
+{
+  "baseline": "Recomputed adjusted-revenue-only top 100 separately for each scope",
+  "certified": 16,
+  "fee_basis": "consumer_fraud_adjusted",
+  "files": {
+    "arts_portfolio_dashboard.csv": "ca541ff0917e74a0c7d75efd1b36cde8c938c54f930680dd945851bb62adae73",
+    "arts_portfolio_dashboard.parquet": "65d15507f16643c6b0c0fa98f3773c8fbb78005de03b3d74cc93702a19a831d5",
+    "auto_portfolio_dashboard.csv": "3f056bc5ee15d0b83aa8932a6f66930bb14982cc9db39c11a6e6d16b81e6da6f",
+    "auto_portfolio_dashboard.parquet": "9efb125d997270ca86797ee71c11671abb700b8f09dae92b8d351d2b8e07e012",
+    "data_dictionary.csv": "9702fc714c49bcfede5063d4b5c42ad81ded277cd6434a809e41abad607a839c",
+    "fashion_portfolio_dashboard.csv": "fc5879eb5d9ed1424a20a963353feba60ef02f0638610ceb0c3255a036d42d4f",
+    "fashion_portfolio_dashboard.parquet": "11f977db27a2d1a4862a3c12cb968ac9996aa17f5739675b4d0e4c83acde67e1",
+    "home_portfolio_dashboard.csv": "a0cf5abbc9cbcb7fba3da2e4a897c022df0a9bfded97377bcddd44525d930619",
+    "home_portfolio_dashboard.parquet": "773763eafd381a4c71b0095755de30b226fd695e1c4ea218fa287105a78601fd",
+    "portfolio_dashboard.csv": "f3f29f4a452d07d92f8437b1d91300fe54f693b89fc0f69c8cb79760a9604eff",
+    "portfolio_dashboard.parquet": "1de634ac8772d7532eee53d16b1c2a5cf873fb1e05f6a7ee9cb6eb6319000b78",
+    "tech_portfolio_dashboard.csv": "7666b25ee6a834d7a99efbcd669d8ba5090809569368d451c55c0d4dcab063d9",
+    "tech_portfolio_dashboard.parquet": "6ee452b334fb03b17308dd3cdc50d803bf727fd7eec90a1173cf9f64dc49b55b"
+  },
+  "formula": "gross fee * (1 - consumer_fraud_probability / 100)",
+  "legacy_gross_columns": "Compatibility aliases for adjusted fees in THIS directory; use explicit adjusted columns",
+  "no_new_holdout": true,
+  "original_outputs_preserved": true,
+  "portfolios": 30,
+  "rows": 3000,
+  "score": "50% baseline-relative adjusted weekly CV + 50% baseline-relative adjusted customer HHI"
+}

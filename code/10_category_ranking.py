@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import multiprocessing
 import os
@@ -124,6 +125,26 @@ def build_segment(segment: str, categories: list[str], output_stem: str) -> dict
 
 def main() -> None:
     """Run independent segment optimizations and print the generated outputs."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--fraud-adjusted", action="store_true",
+        help="Use the prepared consumer-fraud-adjusted fees and verified resumable runs; export to handoff/fraud_adjusted/final/.",
+    )
+    args = parser.parse_args()
+    if args.fraud_adjusted:
+        from fraud_adjusted_portfolios import SEGMENTS, run_scope, report
+
+        # Reuse the audited preparation, exact category lookup and checkpoints.
+        # The original gross-fee outputs below remain a separate research record.
+        if os.name == "nt":
+            from portfolio_optimizer.resource_limits import apply_worker_limits
+            apply_worker_limits()
+        with threadpool_limits(limits=1):
+            for scope in SEGMENTS:
+                run_scope(scope)
+            report()
+        return
+
     FINAL.mkdir(parents=True, exist_ok=True)
     segment_categories = load_segment_categories()
 

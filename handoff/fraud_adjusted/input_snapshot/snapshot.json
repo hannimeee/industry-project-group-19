@@ -1,0 +1,27 @@
+{
+  "as_of": "2022-09-30",
+  "complete_coverage": true,
+  "currency": "AUD",
+  "eligibility_definition": "Original sales eligibility, additionally positive adjusted mean and risk-window fees",
+  "expected_return_definition": "Mean of 19 complete monthly sums of transaction sales * take_rate / 100 * (1 - consumer_fraud_probability / 100)",
+  "expected_return_end": "2022-09-30",
+  "expected_return_start": "2021-03-01",
+  "fee_basis": "consumer_fraud_adjusted",
+  "files": {
+    "customer_fees": "customer_fees.parquet",
+    "merchants": "merchants.parquet",
+    "weekly_fees": "weekly_fees.parquet"
+  },
+  "fraud_score_units": "percentage_0_100",
+  "imputation_scope": "Retrospective all-label team OLS; observed scores preserved; not point-in-time backtest predictions",
+  "schema_version": 1,
+  "sha256": {
+    "customer_fees": "8d836f1275a1f7a38b24328ae498a048ac840119ba2c305fe066d44d38ba0553",
+    "merchants": "6795d698a8003db4fdc06daf89c65ee7899359c6e0f28066ad62eeaf4d82b55f",
+    "weekly_fees": "a6137f819a8bb632669f021f47ca4af23e7d165c9dc59a8691e4476dce0d9198"
+  },
+  "source_model_sha256": "3caab6f5221f8fd85ae2758d6d82f70fe442e9498f605ef8b945f6d96f71c4d4",
+  "weeks": 26,
+  "window_end": "2022-09-25",
+  "window_start": "2022-03-28"
+}

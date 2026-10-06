@@ -3,6 +3,17 @@ MAST30034 Project 2 (Group): Buy Now, Pay Later Merchant Ranking
 
 ## Final dashboard and reusable optimizer — start here
 
+**Fraud-adjusted rerun:** [handoff/fraud_adjusted/](handoff/fraud_adjusted/README.md)
+contains the new global and category portfolios using transaction-level
+`gross fee * (1 - consumer_fraud_probability / 100)`. Expected returns, weekly covariance
+and customer exposures all use the adjusted amounts. Original gross-only results below
+are preserved separately; do not mix the two fee bases. See the rerun's findings and
+validation records before interpreting its imputed scores.
+
+For the five category groups, run `python code/10_category_ranking.py --fraud-adjusted`
+after preparing the adjusted inputs and global selection. The adjusted global and category
+CSV/Parquet files are in [`handoff/fraud_adjusted/final/`](handoff/fraud_adjusted/final/).
+
 The final handoff is in **[handoff/](handoff/README.md)**. It is self-contained and can be copied to another computer.
 
 - **Dashboard data:** [one merged Parquet table](handoff/final/portfolio_dashboard.parquet), or [CSV](handoff/final/portfolio_dashboard.csv): five portfolios, 100 merchants each.

@@ -1,2 +1,7 @@
 # Preserve the portable package byte-for-byte, including hashed provenance files.
 /handoff/** -text whitespace=cr-at-eol
+
+# Keep fraud-rerun source fingerprints stable across Windows and macOS checkouts.
+/code/fraud_adjusted_*.py -text whitespace=cr-at-eol
+/code/tests/test_fraud_adjusted_portfolios.py -text whitespace=cr-at-eol
+/code/10_category_ranking.py text eol=lf

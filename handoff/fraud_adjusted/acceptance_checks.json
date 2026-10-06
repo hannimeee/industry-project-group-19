@@ -1,0 +1,19 @@
+{
+  "adjusted_customer_fees_never_exceed_original": true,
+  "all_fee_floors_satisfied": true,
+  "certified": 16,
+  "consumer_validation_matches_team_notebook": true,
+  "csv_parquet_equivalent": true,
+  "deterministic_ranks": true,
+  "exactly_100_eligible": true,
+  "independent_cv_hhi_score_recomputation": true,
+  "monthly_return_from_daily_reconciled": true,
+  "no_new_holdout": true,
+  "noncertified": 14,
+  "original_customer_pair_keys_preserved": true,
+  "portfolios": 30,
+  "rows": 3000,
+  "solver_checkpoint_hashes_verified": true,
+  "unique_portfolio_identifiers": true,
+  "weekly_customer_totals_reconciled": true
+}
