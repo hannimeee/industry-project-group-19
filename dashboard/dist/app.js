@@ -6,7 +6,7 @@ const money=n=>new Intl.NumberFormat('en-AU',{style:'currency',currency:data.cur
 const compact=n=>new Intl.NumberFormat('en-AU',{style:'currency',currency:data.currency,notation:'compact',maximumFractionDigits:3}).format(n);
 const pct=(n,digits=1)=>new Intl.NumberFormat('en-AU',{style:'percent',maximumFractionDigits:digits}).format(n);
 const date=s=>new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
-const strategyLabel=a=>({'1':'High Growth','0.995':'Growth','0.99':'Balanced','0.98':'Conservative Balanced','0.95':'Conservative Balanced'}[String(a)]||'');
+const strategyLabel=a=>({'1':'High Growth','0.995':'Growth','0.99':'Balanced','0.98':'Conservative Balanced','0.95':'Conservative'}[String(a)]||'');
 const portfolio=()=>data.portfolios.find(p=>p.id===selectedId);
 $('source').textContent='Final results: '+new Date(data.results_date+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
 $('source').title='Results label date; underlying selection snapshot: '+date(data.as_of);

@@ -6,7 +6,7 @@ Run `python dashboard/refresh_final.py` from the repository root with the depend
 
 Return, weekly volatility and consumer exposures now include take rate and transaction-level consumer-fraud adjustment. The original category relationship matrices still come from `handoff/final/`, are full-dataset descriptive measures, and are labelled separately. Curated fraud averages in merchant details are descriptive full-history attributes, not necessarily the reconstructed scores used in the adjusted optimisation.
 
-Alpha strategy labels: 100% High Growth; 99.5% Growth; 99% Balanced; 98% and 95% Conservative Balanced. Labels are alpha preferences, not risk-score thresholds.
+Alpha strategy labels: 100% High Growth; 99.5% Growth; 99% Balanced; 98% Conservative Balanced; 95% Conservative. Labels are alpha preferences, not risk-score thresholds.
 
 The tutorial allows interaction inside the highlighted section, merchant and histogram popups, pagination and relationship switches. Histogram-to-ranking navigation moves the tour to its merchant step. Skip, Back, Next, Escape and keyboard traversal remain available.
 
