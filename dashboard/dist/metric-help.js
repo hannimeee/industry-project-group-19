@@ -10,7 +10,7 @@
   risk:()=>({title:'Combined risk score',paragraphs:[
    'The model minimises this score while selecting exactly 100 merchants and meeting the return-retention target (α). Lower scores mean less estimated risk under the model.',
    `Score = 100 × [${pct(data.variability_weight)} × (CV / baseline CV) + ${pct(data.concentration_weight)} × (HHI / baseline HHI)]. The baseline is the 100 eligible merchants with the highest expected return within the selected scope, and its score is 100. Scores from different scopes use different baselines.`,
-   'Strategy labels describe the selected alpha: 100% High Growth; 99.5% Growth; 99% Balanced; 98% and 95% Conservative Balanced. They are not risk-score bands.',
+   'Strategy labels describe the selected alpha: 100% High Growth; 99.5% Growth; 99% Balanced; 98% Conservative Balanced; 95% Conservative. They are not risk-score bands.',
    'CV measures weekly revenue volatility; HHI measures shared-customer concentration. The weights express a modelling preference. This index is not a probability, and lower estimated risk does not guarantee future protection.',
    `Current score: ${portfolio().metrics.risk_score.toFixed(3)}. ${portfolio().validation.certified?'Certified to the requested solver tolerance':'Best found; not certified to the requested solver tolerance'}. Gap upper bound: ${pct(portfolio().validation.gap,3)}; score lower bound: ${portfolio().validation.lower_bound.toFixed(6)}.`,
    'Certification means the 0.1% relative gap or 0.0001 score-point tolerance was met, not an exact-optimum or future-performance guarantee. The source status records how this particular search ended.',

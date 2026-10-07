@@ -98,3 +98,5 @@ body,button,select,.pill,#chart text{font-family:'Space Grotesk',Arial,sans-seri
 @media(min-width:901px) and (max-width:1150px){.metrics .risk-value{gap:5px}.metrics .risk-value .risk-label{font-size:13px}.metrics .risk-value .risk-number{font-size:11px}}
 
 .metrics .risk-value .risk-label[data-long="true"]{font-size:clamp(12px,1.05vw,17px)}
+
+.brand-icon{display:block;width:30px;height:30px;object-fit:contain;flex-shrink:0}.heading .title-copy h1{font-size:34px;line-height:1.2}.heading .title-copy h1 strong{font-weight:700}.paytential-tagline{margin:7px 0 0;font-size:17px;line-height:1.4;color:var(--ink)}

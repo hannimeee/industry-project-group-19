@@ -37,3 +37,4 @@ derby.log
 # Editor settings
 .vscode/
 .idea/
+.vercel
