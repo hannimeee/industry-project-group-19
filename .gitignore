@@ -20,6 +20,7 @@ venv/
 /tables/raw/
 /tables/curated/
 /tables/analysis/
+/tables/execution/
 
 # New reusable optimizer runs; final handoff files and its input snapshot are retained.
 /handoff/runs/

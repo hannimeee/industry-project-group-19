@@ -9,7 +9,7 @@ import pandas as pd
 import pytest
 from sklearn.covariance import LedoitWolf
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str((Path(__file__).resolve().parents[1] / "scripts")))
 import cash_flow_variability as cf
 
 

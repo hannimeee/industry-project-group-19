@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str((Path(__file__).resolve().parents[1] / "scripts")))
 import abs_momentum_comparison as comparison
 
 
@@ -224,7 +224,7 @@ def test_category_normalization_preserves_words():
 
 def test_protocol_rejects_changed_settings(tmp_path):
     """Prevent silent replacement of an evaluated protocol with tuned parameters."""
-    mapping = pd.read_csv(comparison.ROOT / "code/abs_category_mapping.csv", keep_default_na=False)
+    mapping = pd.read_csv(comparison.ROOT / "tables/reference/abs_category_mapping.csv", keep_default_na=False)
     comparison.freeze_protocol(tmp_path, mapping)
     protocol = json.loads((tmp_path / "protocol.json").read_text())
     protocol["model"]["alpha"] = 999

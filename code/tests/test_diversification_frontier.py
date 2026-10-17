@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str((Path(__file__).resolve().parents[1] / "scripts")))
 import diversification_frontier as df
 import cash_flow_variability as cf
 from test_risk_aware_selection import toy

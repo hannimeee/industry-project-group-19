@@ -8,7 +8,7 @@ import pandas as pd
 import pytest
 from scipy import sparse
 
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0,str((Path(__file__).resolve().parents[1] / "scripts")))
 import customer_concentration as cc
 from test_risk_aware_selection import toy as panel_toy
 

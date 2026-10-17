@@ -5,11 +5,29 @@ import numpy as np
 import pandas as pd
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str((Path(__file__).resolve().parents[1] / "scripts")))
 from customer_concentration_serial import (
     assert_reproduced_frame, install_reproduction_checks, reproduction_threads,
     install_original_oracle_threads,
 )
+
+
+@pytest.fixture
+def detectable_blas_backend():
+    """Only test thread restoration when threadpoolctl can observe the backend.
+
+    Apple Accelerate can perform the numerical work without exposing a BLAS
+    backend to this API. In that case the runtime limits are not verified or
+    enforced through threadpoolctl; an empty list must not pass via all([]).
+    """
+    from threadpoolctl import threadpool_info
+    backends = [pool for pool in threadpool_info() if pool['user_api'] == 'blas']
+    if not backends:
+        pytest.skip(
+            'No BLAS backend detectable by threadpoolctl (e.g. Apple Accelerate); '
+            'runtime BLAS thread limits/restoration cannot be verified or enforced through this API.'
+        )
+    return backends
 
 
 @pytest.mark.parametrize('date,retention,actual_floor,expected', [
@@ -17,7 +35,7 @@ from customer_concentration_serial import (
     ('2022-06-30', .98, 1., 20), ('2022-04-30', .95, 1., 20),
     ('2022-06-30', .95, None, 20),
 ])
-def test_original_recovery_settings_do_not_leak_to_other_cases(date, retention, actual_floor, expected):
+def test_original_recovery_settings_do_not_leak_to_other_cases(date, retention, actual_floor, expected, detectable_blas_backend):
     from types import SimpleNamespace
     from threadpoolctl import threadpool_info, threadpool_limits
     def counts():
@@ -32,7 +50,7 @@ def test_original_recovery_settings_do_not_leak_to_other_cases(date, retention, 
         assert all(n==20 for n in study.optimize(retention=.95,actual_floor=1.))
 
 
-def test_original_recovery_setting_restored_after_error():
+def test_original_recovery_setting_restored_after_error(detectable_blas_backend):
     from types import SimpleNamespace
     from threadpoolctl import threadpool_info, threadpool_limits
     study=SimpleNamespace()
@@ -48,7 +66,7 @@ def test_original_recovery_setting_restored_after_error():
         assert all(p['num_threads']==20 for p in threadpool_info() if p['user_api']=='blas')
 
 
-def test_original_reduction_order_and_nested_optimizer_limit_are_restored():
+def test_original_reduction_order_and_nested_optimizer_limit_are_restored(detectable_blas_backend):
     from threadpoolctl import threadpool_info, threadpool_limits
     values = np.linspace(.1, 1., 500_000)
     def blas_counts():
@@ -193,7 +211,7 @@ def test_solver_step_checkpoints_reproduce_and_reject_corruption(tmp_path, monke
 def test_windows_job_limit_denies_oversized_allocation():
     import json
     import subprocess
-    result = subprocess.run([sys.executable, str(Path(__file__).resolve().parents[1]/
+    result = subprocess.run([sys.executable, str((Path(__file__).resolve().parents[1] / "scripts")/
                             'customer_concentration_resources.py')], capture_output=True,
                             text=True, timeout=15, check=True)
     record = json.loads(result.stdout)

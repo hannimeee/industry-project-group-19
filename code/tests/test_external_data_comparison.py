@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str((Path(__file__).resolve().parents[1] / "scripts")))
 import external_data_sources as src
 import external_data_models as mdl
 import external_data_comparison as exp
