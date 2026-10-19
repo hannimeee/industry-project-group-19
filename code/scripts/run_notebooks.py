@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -62,26 +63,45 @@ def main():
     parser.add_argument("names", nargs="*", help="Notebook filenames; omitted means every notebook.")
     parser.add_argument("--kernel", default="bnpl-project")
     parser.add_argument("--timeout", type=int, default=1800, help="Maximum seconds per cell.")
+    parser.add_argument("--fail-fast", action="store_true", help="Stop after the first failed notebook.")
     parser.add_argument("--worker", type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args()
-    OUTPUT.mkdir(parents=True, exist_ok=True)
     if args.worker:
+        OUTPUT.mkdir(parents=True, exist_ok=True)
         return 0 if execute_one(args.worker, args.kernel, args.timeout)["status"] == "passed" else 1
     paths = [NOTEBOOKS / name for name in args.names] if args.names else sorted(NOTEBOOKS.glob("*.ipynb"), key=lambda p: (int(p.name.split("_")[0]), p.name != "02_analysis.ipynb", p.name))
     if not paths or any(not p.is_file() or p.parent != NOTEBOOKS for p in paths):
         parser.error("Provide existing notebook filenames from code/notebooks/.")
+    from jupyter_client.kernelspec import KernelSpecManager, NoSuchKernel
+
+    kernels = KernelSpecManager()
+    try:
+        kernels.get_kernel_spec(args.kernel)
+    except NoSuchKernel:
+        available = ", ".join(sorted(kernels.find_kernel_specs())) or "none"
+        parser.error(f"No such kernel named {args.kernel}. Available kernels: {available}.")
+
+    OUTPUT.mkdir(parents=True, exist_ok=True)
     results = []
     for path in paths:
         print(f"Running {path.name}", flush=True)
         record = OUTPUT / (path.stem + ".json")
         record.unlink(missing_ok=True)
-        with (OUTPUT / (path.stem + ".log")).open("w") as log:
+        log_path = OUTPUT / (path.stem + ".log")
+        with log_path.open("w") as log:
             process = subprocess.run([sys.executable, str(Path(__file__).resolve()), "--worker", str(path),
                                       "--kernel", args.kernel, "--timeout", str(args.timeout)], stdout=log, stderr=subprocess.STDOUT)
         result = json.loads(record.read_text()) if record.exists() else {"notebook": path.name, "status": "failed", "error": f"Worker exited {process.returncode}; see its log."}
         results.append(result)
         print(f"{path.name}: {result['status']} ({result.get('seconds', '?')} seconds)", flush=True)
         (OUTPUT / "latest_run.json").write_text(json.dumps(results, indent=2) + "\n")
+        if result["status"] != "passed":
+            error = re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", result.get("error", "Notebook execution failed."))
+            lines = [line.strip() for line in error.splitlines() if line.strip()]
+            print(f"  {lines[-1][:500] if lines else 'Notebook execution failed.'}", flush=True)
+            print(f"  Log: {log_path}", flush=True)
+            if args.fail_fast:
+                break
     return 0 if all(r["status"] == "passed" for r in results) else 1
 
 
