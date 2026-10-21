@@ -8,9 +8,7 @@ const pct=(n,digits=1)=>new Intl.NumberFormat('en-AU',{style:'percent',maximumFr
 const date=s=>new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
 const strategyLabel=a=>({'1':'High Growth','0.995':'Growth','0.99':'Balanced','0.98':'Conservative Balanced','0.95':'Conservative'}[String(a)]||'');
 const portfolio=()=>data.portfolios.find(p=>p.id===selectedId);
-$('source').textContent='Final results: '+new Date(data.results_date+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
-$('source').title='Results label date; underlying selection snapshot: '+date(data.as_of);
-$('footnote').textContent='Snapshot '+date(data.as_of)+' · Final handoff';
+$('footnote').textContent='MAST30034 Project 2 Group 19';
 $('revenue-note').textContent=data.currency+' per month · historical mean';
 $('scope').innerHTML=data.scopes.map(s=>`<option value="${esc(s.id)}">${esc(s.name)}</option>`).join('');
 $('scope').addEventListener('change',e=>{const current=portfolio();const next=data.portfolios.find(p=>p.scope===e.target.value&&p.retention===current.retention);if(next)selectPortfolio(next.id);});
