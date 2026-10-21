@@ -11,7 +11,7 @@
   $('relationship-matrix').innerHTML='<table><caption class="sr-only">'+(revenue?'Revenue correlation':'Consumer overlap')+' by sector</caption><thead><tr><th scope="col">Sector</th>'+matrix.categories.map((c,i)=>`<th scope="col" title="${esc(c)}">${short[i]}</th>`).join('')+'</tr></thead><tbody>'+matrix.values.map((row,i)=>'<tr><th scope="row">'+esc(matrix.categories[i])+'</th>'+row.map((v,j)=>{
    const d=matrix.diagnostics.find(d=>(d.segment_a===matrix.categories[i]&&d.segment_b===matrix.categories[j])||(d.segment_b===matrix.categories[i]&&d.segment_a===matrix.categories[j]));
    const title=`${matrix.categories[i]} × ${matrix.categories[j]}: ${v}. ${d?`${d.valid_pairs.toLocaleString()} valid pairs; ${d.excluded_pairs.toLocaleString()} excluded.`:''}`;
-   return `<td style="background:rgba(${v<0?'0,172,190':'79,47,152'},${.06+.76*((v-lo)/(hi-lo||1))})" title="${esc(title)}"><span style="color:${(v-lo)/(hi-lo||1)>.55?'white':'#271866'}">${v.toFixed(4)}</span></td>`;
+   return `<td style="background:rgba(0,190,211,${.10+.75*((v-lo)/(hi-lo||1))})" title="${esc(title)}"><span style="color:#271866">${v.toFixed(4)}</span></td>`;
   }).join('')+'</tr>').join('')+'</tbody></table>';
  }
  $('relationship-revenue').addEventListener('click',()=>show('revenue'));

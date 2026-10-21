@@ -149,7 +149,7 @@ def build(source, output, merchants_path=None):
         correlations[kind]={'categories':categories,'values':values,'diagnostics':diagnostics}
         for f in [name,diagnostics_name]:hashes['relationships/'+f]=hashlib.sha256((relationship_source/f).read_bytes()).hexdigest()
     files=sorted(merchants_path.rglob('*.parquet')) if merchants_path.is_dir() else [merchants_path]
-    result.update(fee_basis='consumer_fraud_adjusted',relationship_basis='Original full-dataset descriptive relationships; not recomputed for fraud-adjusted selection',results_date="2022-10-03",demo=False,scopes=[{'id':s,'name':n} for s,n,_ in SCOPES],portfolios=portfolios,correlations=correlations,source={'files':hashes,'curated_merchants_rows':len(incomes),'income_source_hashes':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in files},'null_income_rows':sum(m['avg_consumer_district_income'] is None for p in portfolios for m in p['merchants'])})
+    result.update(fee_basis='consumer_fraud_adjusted',relationship_basis='Original full-dataset descriptive relationships; not recomputed for fraud-adjusted selection',results_date="2026-10-06",demo=False,scopes=[{'id':s,'name':n} for s,n,_ in SCOPES],portfolios=portfolios,correlations=correlations,source={'files':hashes,'curated_merchants_rows':len(incomes),'income_source_hashes':{f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in files},'null_income_rows':sum(m['avg_consumer_district_income'] is None for p in portfolios for m in p['merchants'])})
     output=Path(output);temporary=output.with_suffix('.tmp')
     temporary.write_text('window.PORTFOLIO_DATA = '+json.dumps(result,ensure_ascii=True,allow_nan=False,separators=(',',':'))+';\n')
     temporary.replace(output)
